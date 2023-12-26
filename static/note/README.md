@@ -8,6 +8,7 @@
   - [登录](#登录)
   - [国际化](#国际化)
   - [主题](#主题)
+    - [动态换肤](#动态换肤)
   - [功能组件封装](#功能组件封装)
   - [管理应用状态](#管理应用状态)
 
@@ -197,6 +198,35 @@
 - 菜单语言切换的时候，修改国际化的设置
 
 ### 主题
+
+- 安装主题工具
+``` powershell
+  npm i element-theme --dev
+```
+- 安装chalk主题
+``` powershell
+  npm i element-theme-chalk -D
+```
+- 初始化变量文件
+``` powershell
+  # 主题生成工具安装成功后，如果全局安装可以在命令行里通过 et 调用工具，如果安装在当前目录下，需要通过 node_modules/.bin/et 访问到命令。执行 -i 初始化变量文件。默认输出到 element-variables.scss，当然你可以传参数指定文件输出目录。
+  node_modules/.bin/et -i
+  # 命令执行成功之后，会在根目录生成 scss文件 element-variables.scss
+```
+- 修改主题色：在 element-variables.scss 文件里修改 $–color-primary:#4b5f6e，即你想要的主题颜色
+- 编译主题
+``` powershell
+  #  执行主题编译命令生成主题，根目录会生成一个theme的文件夹 。
+  node_modules/.bin/et
+```
+- 引入自定义主题
+  - 把生成的主题按颜色改名放置 src/theme 目录下。
+  - 在 main.js 中 import ‘所在路径/index.css’
+
+#### 动态换肤
+
+- src/components 创建 ThemePicker 文件夹 下创建 index.vue文件
+- 使用 ElementUI 的 el-color-picker 选择颜色
 
 ### 功能组件封装
 

@@ -1,4 +1,4 @@
-<!-- 主体切换组件 -->
+<!-- 主题切换组件 -->
 <template>
   <el-color-picker class="theme-picker" popper-class="theme-picker-dropdown" v-model="theme" />
 </template>
@@ -6,20 +6,18 @@
 <script>
 const version = require('element-ui/package.json').version // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF' // default color
+
 export default {
   name: 'ThemePicker',
-  data () {
-    return {
-      chalk: '', // content of theme-chalk css
-      theme: ORIGINAL_THEME
-    }
-  },
+  data: () => ({
+    chalk: '', // content of theme-chalk css
+    theme: ORIGINAL_THEME
+  }),
   watch: {
     theme (val, oldVal) {
       if (typeof val !== 'string') return
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
-      const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
-      console.log(themeCluster, originalCluster)
+      const originalCluster = this.getThemeCluster(oldVal && oldVal.includes('#') ? oldVal.replace('#', '') : oldVal || '')
       const getHandler = (variable, id) => {
         return () => {
           const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
@@ -44,11 +42,10 @@ export default {
         chalkHandler()
       }
 
-      const styles = [].slice.call(document.querySelectorAll('style'))
-        .filter(style => {
-          const text = style.innerText
-          return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
-        })
+      const styles = [].slice.call(document.querySelectorAll('style')).filter(style => {
+        const text = style.innerText
+        return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
+      })
       styles.forEach(style => {
         const {innerText} = style
         if (typeof innerText !== 'string') return
