@@ -7,10 +7,12 @@
     "exit": "退出"
   },
   "sys": {
+    "sysMng": "系统管理",
     "userMng": "用户管理",
     "deptMng": "机构管理",
     "roleMng": "角色管理",
     "menuMng": "菜单管理",
-    "logMng": "日志管理"
+    "logMng": "日志管理",
+    "sysMonitor": "系统监控"
   }
 }

@@ -2,8 +2,9 @@
 <template>
   <div class="menu-bar-container">
     <!-- logo -->
-    <div class="logo" :class="isCollapse?'menu-bar-collapse-width':'menu-bar-width'">
-      <img :src="this.logo" /> <div>{{isCollapse?'':sysName}}</div>
+    <div class="logo" :class="isCollapse ? 'menu-bar-collapse-width' : 'menu-bar-width'">
+      <img :src="this.logo" />
+      <div>{{ isCollapse ? '' : sysName}}</div>
     </div>
     <!-- 导航菜单 -->
     <el-menu default-active="1-1" :class="isCollapse?'menu-bar-collapse-width':'menu-bar-width'" @open="handleopen" @close="handleclose" @select="handleselect" :collapse="isCollapse">
